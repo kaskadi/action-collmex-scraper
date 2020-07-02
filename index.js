@@ -1,6 +1,8 @@
 const puppeteer = require('puppeteer')
 const login = require('./helpers/login.js')
 const gotoDocs = require('./helpers/goto-docs.js')
+const getEndpointHrefs = require('./helpers/get-endpoint-hrefs.js')
+
 const customerNr = process.env.CUSTOMER_NR
 
 async function main () {
@@ -8,7 +10,8 @@ async function main () {
   const page = await browser.newPage()
   await login(page, customerNr, process.env.USER_ID, process.env.USER_PWD)
   await gotoDocs(page, customerNr)
-
+  const endpointsHrefs = await getEndpointHrefs(page)
+  console.log(endpointsHrefs)
   await page.screenshot({
     path: './screenshots/page.png'
   })
