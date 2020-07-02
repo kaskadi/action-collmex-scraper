@@ -1,13 +1,8 @@
-const puppeteer = require('puppeteer')
-const login = require('./helpers/login.js')
-const gotoDocs = require('./helpers/goto-docs.js')
-const getEndpointHrefs = require('./helpers/get-endpoint-hrefs.js')
-
-const customerNr = process.env.CUSTOMER_NR
-
-async function main () {
-  const browser = await puppeteer.launch()
-  const page = await browser.newPage()
+async function scraper (browser, page) {
+  const login = require('./helpers/login.js')
+  const gotoDocs = require('./helpers/goto-docs.js')
+  const getEndpointHrefs = require('./helpers/get-endpoint-hrefs.js')
+  const customerNr = process.env.CUSTOMER_NR
   await login(page, customerNr, process.env.USER_ID, process.env.USER_PWD)
   await gotoDocs(page, customerNr)
   const endpointsHrefs = await getEndpointHrefs(page)
@@ -15,8 +10,15 @@ async function main () {
   await page.screenshot({
     path: './screenshots/page.png'
   })
-
-  await browser.close()
 }
 
-main().catch(console.log)
+async function main () {
+  const startPupeteer = require('./helpers/start-pupeteer.js')
+  const { browser, page } = await startPupeteer().catch(err => {
+    console.log(err)
+    process.exit()
+  })
+  await scraper(browser, page).catch(console.log).finally(async () => { await browser.close() })
+}
+
+main()
