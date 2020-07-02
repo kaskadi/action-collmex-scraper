@@ -10,9 +10,11 @@ async function scraper (page, browser) {
     path: './screenshots/page.png'
   })
   const endpointsHrefs = await getEndpointHrefs(page)
+  console.log(endpointsHrefs.length)
   await page.close()
-  const data = await scrapeEndpointsData(endpointsHrefs, browser)
-  console.log(data)
+  const data = await scrapeEndpointsData(endpointsHrefs, browser).then(data => data.flat(1))
+  const satzarten = Object.fromEntries(data.map(data => [data.Satzart, data]))
+  console.log(satzarten)
 }
 
 async function main () {
