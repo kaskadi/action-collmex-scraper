@@ -1,4 +1,4 @@
-async function scraper (browser, page) {
+async function scraper (page) {
   const login = require('./helpers/login.js')
   const gotoDocs = require('./helpers/goto-docs.js')
   const getEndpointHrefs = require('./helpers/get-endpoint-hrefs.js')
@@ -18,7 +18,7 @@ async function main () {
     console.log(err)
     process.exit()
   })
-  await scraper(browser, page).catch(console.log).finally(async () => { await browser.close() })
+  await scraper(page).catch(console.log).finally(async () => { await browser.close() })
 }
 
 main()
