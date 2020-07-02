@@ -102,5 +102,3 @@ typings/
 
 .directory
 
-# Leave this as last line!!!!
-node_modules

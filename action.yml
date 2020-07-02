@@ -1,4 +1,4 @@
-name: 'template-action'
+name: 'action-collmex-api-docs-scrapper'
 description: ''
 runs:
   using: 'node12'
