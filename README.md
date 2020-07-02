@@ -1,14 +1,14 @@
-![](https://img.shields.io/github/workflow/status/kaskadi/action-collmex-api-docs-scrapper/update?label=dependencies%20updated&logo=npm)
+![](https://img.shields.io/github/workflow/status/kaskadi/action-collmex-scrapper/update?label=dependencies%20updated&logo=npm)
 
 **CodeClimate**
 
-[![](https://img.shields.io/codeclimate/maintainability/kaskadi/action-collmex-api-docs-scrapper?label=maintainability&logo=Code%20Climate)](https://codeclimate.com/github/kaskadi/action-collmex-api-docs-scrapper)
-[![](https://img.shields.io/codeclimate/tech-debt/kaskadi/action-collmex-api-docs-scrapper?label=technical%20debt&logo=Code%20Climate)](https://codeclimate.com/github/kaskadi/action-collmex-api-docs-scrapper)
-<!-- [![](https://img.shields.io/codeclimate/coverage/kaskadi/action-collmex-api-docs-scrapper?label=test%20coverage&logo=Code%20Climate)](https://codeclimate.com/github/kaskadi/action-collmex-api-docs-scrapper) -->
+[![](https://img.shields.io/codeclimate/maintainability/kaskadi/action-collmex-scrapper?label=maintainability&logo=Code%20Climate)](https://codeclimate.com/github/kaskadi/action-collmex-scrapper)
+[![](https://img.shields.io/codeclimate/tech-debt/kaskadi/action-collmex-scrapper?label=technical%20debt&logo=Code%20Climate)](https://codeclimate.com/github/kaskadi/action-collmex-scrapper)
+<!-- [![](https://img.shields.io/codeclimate/coverage/kaskadi/action-collmex-scrapper?label=test%20coverage&logo=Code%20Climate)](https://codeclimate.com/github/kaskadi/action-collmex-scrapper) -->
 
 **LGTM**
 
-[![](https://img.shields.io/lgtm/grade/javascript/github/kaskadi/action-collmex-api-docs-scrapper?label=code%20quality&logo=lgtm)](https://lgtm.com/projects/g/kaskadi/action-collmex-api-docs-scrapper/?mode=list)
+[![](https://img.shields.io/lgtm/grade/javascript/github/kaskadi/action-collmex-scrapper?label=code%20quality&logo=lgtm)](https://lgtm.com/projects/g/kaskadi/action-collmex-scrapper/?mode=list)
 
 ****
 
@@ -55,7 +55,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: {YOUR-STEP-NAME}
-      uses: kaskadi/action-collmex-api-docs-scrapper@master
+      uses: kaskadi/action-collmex-scrapper@master
 ```
 
 :point_down: **Here goes any extra details on how to use the action (environment variables/inputs description for example)** :point_down:
