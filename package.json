@@ -36,5 +36,7 @@
     ],
     "report-dir": "./coverage"
   },
-  "dependencies": {}
+  "dependencies": {
+    "puppeteer": "^4.0.1"
+  }
 }
