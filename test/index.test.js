@@ -1,5 +1,5 @@
 /* eslint-env mocha */
-const childProc = require('child_process')
+// const childProc = require('child_process')
 const chai = require('chai')
 chai.should()
 
@@ -14,18 +14,18 @@ describe('action-collmex-scrapper', function () {
 // *************
 
 // awaitable function to execute the main script of this action
-function execMain () {
-  return new Promise((resolve, reject) => {
-    childProc.exec('node index', (err, stdout, stderr) => {
-      if (err === null) {
-        console.log(stdout)
-        resolve(true)
-      } else {
-        console.log(stderr)
-        resolve(false)
-      }
-    })
-  })
-}
+// function execMain () {
+//   return new Promise((resolve, reject) => {
+//     childProc.exec('node index', (err, stdout, stderr) => {
+//       if (err === null) {
+//         console.log(stdout)
+//         resolve(true)
+//       } else {
+//         console.log(stderr)
+//         resolve(false)
+//       }
+//     })
+//   })
+// }
 
 // just add any helpers you may need
