@@ -19,8 +19,7 @@ function scrapeEndpointData (browser) {
 function getData () {
   const tables = Array.from(document.querySelectorAll('#dv-hilfe table'))
   return tables.map(table => {
-    let rows = Array.from(table.querySelectorAll('tr'))
-    rows.shift()
+    const rows = Array.from(table.querySelectorAll('tr:not(:first-child)'))
     const entries = rows.map((row, index) => {
       const cells = Array.from(row.childNodes)
       return [cells[1].textContent.replace(/ /g, '_'), index === 0 ? cells[4].textContent.replace('Festwert ', '').trim() : '']
