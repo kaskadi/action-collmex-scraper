@@ -2,18 +2,18 @@
 const assert = require('chai').assert
 const fs = require('fs')
 const deepEqual = require('fast-deep-equal')
-const path2Env = `${process.cwd()}/test/.env`
-if (!fs.existsSync(path2Env)) {
-  throw new Error('No environment variable config file found in test folder. Please create one following "dotenv" package syntax.')
+if (!process.env.GITHUB_ACTIONS) {
+  const path2Env = `${process.cwd()}/test/.env`
+  if (!fs.existsSync(path2Env)) {
+    throw new Error('No environment variable config file found in test folder. Please create one following "dotenv" package syntax.')
+  }
+  require('dotenv').config({ path: path2Env })
 }
-require('dotenv').config({ path: path2Env })
 
 describe('action-collmex-scraper', function () {
   const filePath = `${process.cwd()}/${process.env.SATZARTEN_PATH}`
   let oldData = {}
-  before(function () {
-    cleanData(filePath)
-  })
+  before(initData(filePath))
   describe('at first run', function () {
     before(async function () {
       this.timeout(30000)
@@ -70,8 +70,18 @@ describe('action-collmex-scraper', function () {
   })
 })
 
-function cleanData (filePath) {
-  const dirPath = filePath.split('/').slice(0, filePath.split('/').length - 1).join('/')
+function initData (filePath) {
+  return () => {
+    const dirPath = filePath.split('/').slice(0, filePath.split('/').length - 1).join('/')
+    if (fs.existsSync(dirPath)) {
+      cleanData(dirPath)
+    } else {
+      fs.mkdirSync(dirPath)
+    }
+  }
+}
+
+function cleanData (dirPath) {
   const filePaths = fs.readdirSync(dirPath, { withFileTypes: true }).filter(dirent => !dirent.isDirectory()).map(dirent => `${dirPath}/${dirent.name}`)
   for (const filePath of filePaths) {
     fs.unlinkSync(filePath)
