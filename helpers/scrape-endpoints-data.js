@@ -22,8 +22,8 @@ function getData () {
     const rows = Array.from(table.querySelectorAll('tr:not(:first-child)'))
     const entries = rows.map((row, index) => {
       const cells = Array.from(row.childNodes)
-      return [cells[1].textContent.replace(/ /g, '_'), index === 0 ? cells[4].textContent.replace('Festwert ', '').trim() : '']
+      return cells.length > 0 ? [cells[1].textContent.replace(/ /g, '_'), index === 0 ? cells[4].textContent.replace('Festwert ', '').trim() : ''] : []
     })
-    return Object.fromEntries(entries)
+    return Object.fromEntries(entries.filter(entry => entry.length > 0))
   })
 }
