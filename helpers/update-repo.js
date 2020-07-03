@@ -9,9 +9,11 @@ module.exports = (satzarten) => {
     fs.writeFileSync(`${root}test/data/satzarten.json`, data, 'utf-8')
   } else {
     const filePath = process.env.SATZARTEN_PATH
-    const currentData = fs.readFileSync(filePath, 'utf-8').trim()
-    if (!deepEqual(satzarten, JSON.parse(currentData))) {
+    const currentData = fs.existsSync(filePath) ? fs.readFileSync(filePath, 'utf-8').trim() : ''
+    if (currentData.length === 0 || !deepEqual(satzarten, JSON.parse(currentData))) {
+      console.log('INFO: updating data file...')
       updateFiles(filePath, currentData, data)
+      console.log('INFO: pushing changes to repo...')
       pushChanges(root)
     } else {
       console.log('INFO: data identical to current one, not proceeding to update data file...')
@@ -20,8 +22,10 @@ module.exports = (satzarten) => {
 }
 
 function updateFiles (filePath, currentData, newData) {
-  const backupPath = `${filePath.slice(0, -5)}.backup${filePath.slice(-5)}`
-  fs.writeFileSync(backupPath, currentData, 'utf-8')
+  if (currentData.length > 0) {
+    const backupPath = `${filePath.slice(0, -5)}.backup${filePath.slice(-5)}`
+    fs.writeFileSync(backupPath, currentData, 'utf-8')
+  }
   fs.writeFileSync(filePath, newData, 'utf-8')
 }
 
