@@ -10,6 +10,10 @@ if [ $BACKUP_PATH ]
     echo "INFO: staging data backup file..."
     git add $BACKUP_PATH
 fi
+echo "INFO: updating package version"
+npm --no-git-tag-version version patch
+git add package.json
+git add package-lock.json
 echo "INFO: commiting..."
 git commit -m "Updated Collmex API CSV mapping data"
 echo "INFO: pushing to repo..."
