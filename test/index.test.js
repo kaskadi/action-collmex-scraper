@@ -8,7 +8,7 @@ if (!fs.existsSync(path2Env)) {
 }
 require('dotenv').config({ path: path2Env })
 
-describe('action-collmex-scrapper', function () {
+describe('action-collmex-scraper', function () {
   const filePath = `${process.cwd()}/${process.env.SATZARTEN_PATH}`
   let oldData = {}
   before(function () {

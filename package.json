@@ -1,5 +1,5 @@
 {
-  "name": "action-collmex-scrapper",
+  "name": "action-collmex-scraper",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kaskadi/action-collmex-scrapper.git"
+    "url": "git+https://github.com/kaskadi/action-collmex-scraper.git"
   },
   "keywords": [],
   "author": "Klimapartner GmbH <kontakt@klimapartner.de> (https://klimapartner.de)",
@@ -19,9 +19,9 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kaskadi/action-collmex-scrapper/issues"
+    "url": "https://github.com/kaskadi/action-collmex-scraper/issues"
   },
-  "homepage": "https://github.com/kaskadi/action-collmex-scrapper#readme",
+  "homepage": "https://github.com/kaskadi/action-collmex-scraper#readme",
   "devDependencies": {
     "chai": "^4.2.0",
     "dotenv": "^8.2.0",
