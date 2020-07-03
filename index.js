@@ -7,11 +7,13 @@ async function scraper (page, browser) {
   await login(page, customerNr, process.env.USER_ID, process.env.USER_PWD)
   await gotoDocs(page, customerNr)
   const endpointsHrefs = await getEndpointHrefs(page)
-  console.log(endpointsHrefs.length)
-  await page.close()
-  const data = await scrapeEndpointsData(endpointsHrefs, browser).then(data => data.flat(1))
+  // await page.close()
+  // const data = await scrapeEndpointsData(endpointsHrefs, browser).then(data => data.flat(1))
+  const data = await scrapeEndpointsData(endpointsHrefs, page).then(data => data.flat(1))
   const satzarten = Object.fromEntries(data.map(data => [data.Satzart, data]))
-  console.log(satzarten)
+  const fs = require('fs')
+  console.log('writing data in file')
+  fs.writeFileSync('checks/satzarten.json', JSON.stringify(satzarten, null, 2), 'utf-8')
 }
 
 async function main () {
