@@ -24,14 +24,18 @@ function getData () {
     const rows = Array.from(table.querySelectorAll('tr:not(:first-child)'))
     const entries = rows.map((row, index) => {
       const cells = Array.from(row.childNodes)
-      return cells.length > 1 ? [cells[1].textContent.replace(/ /g, '_'), index === 0 ? cells[4].textContent.replace('Festwert ', '').trim() : ''] : []
+      return cells.length > 1 ? [
+        cells[1].textContent.replace(/ /g, '_'),
+        index === 0 ? cells[4].textContent.replace('Festwert ', '').trim() : ''
+      ] : []
     })
     return Object.fromEntries(entries.filter(entry => entry.length > 0))
   })
 }
 
 function getCrawlingHrefs (page, urlPattern) {
-  return page.$$eval('#dv-hilfe p > a', (as, pattern) => as.filter(a => a.href.includes(pattern)).map(a => a.href), urlPattern).then(matchingUrls => matchingUrls.filter(matchingUrl => !visitedPages.includes(matchingUrl)))
+  return page.$$eval('#dv-hilfe p > a', (as, pattern) => as.filter(a => a.href.includes(pattern)).map(a => a.href), urlPattern)
+    .then(matchingUrls => matchingUrls.filter(matchingUrl => !visitedPages.includes(matchingUrl)))
 }
 
 function getUrlPattern (currentUrl) {

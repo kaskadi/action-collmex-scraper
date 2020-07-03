@@ -11,5 +11,6 @@ module.exports = async (page, userNr, userId, userPwd) => {
 }
 
 function fillInputField (page, fieldId, fieldValue) {
-  return page.waitFor(`input[id=${fieldId}]`).then(() => page.$eval(`input[id=${fieldId}]`, (el, value) => { el.value = value }, fieldValue))
+  return page.waitFor(`input[id=${fieldId}]`)
+    .then(() => page.$eval(`input[id=${fieldId}]`, (el, value) => { el.value = value }, fieldValue))
 }

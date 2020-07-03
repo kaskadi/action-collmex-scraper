@@ -13,6 +13,7 @@ module.exports = async (page, browser) => {
   const endpointsHrefs = await getEndpointHrefs(page)
   await page.close()
   console.log('INFO: extracting endpoints data...')
-  const data = await scrapeEndpointsData(endpointsHrefs, browser).then(data => data.flat(1))
+  const data = await scrapeEndpointsData(endpointsHrefs, browser)
+    .then(data => data.flat(1))
   return Object.fromEntries(data.map(data => [data.Satzart, data]))
 }
