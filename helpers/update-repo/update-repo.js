@@ -4,8 +4,7 @@ const deepEqual = require('fast-deep-equal')
 module.exports = (satzarten) => {
   const root = process.env.GITHUB_ACTIONS ? '/home/runner/work/_actions/kaskadi/action-collmex-scraper/master/' : `${process.cwd()}/`
   const isTest = !process.env.GITHUB_ACTIONS || process.env.GITHUB_REPOSITORY === 'kaskadi/action-collmex-scraper'
-  const filePath = isTest ? `${root}test/data/satzarten.json` : process.env.SATZARTEN_PATH
-  processData(satzarten, root, filePath, isTest)
+  processData(satzarten, root, process.env.SATZARTEN_PATH, isTest)
 }
 
 function processData (satzarten, root, filePath, isTest = false) {
