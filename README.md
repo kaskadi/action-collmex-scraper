@@ -37,6 +37,8 @@ jobs:
         USER_ID: ${{ secrets.{YOUR-COLLMEX-USER-ID} }}
         USER_PWD: ${{ secrets.{YOUR-COLLMEX-USER-PWD} }}
         SATZARTEN_PATH: ${{ secrets.{PATH-TO-YOUR-SATZARTEN-JSON-FILE} }}
+        USER_NAME: ${{ secrets.{YOUR-GITHUB-USER-NAME} }}
+        USER_EMAIL: ${{ secrets.{YOUR-GITHUB-USER-EMAIL} }}
 ```
 
 :point_down: **Here goes any extra details on how to use the action (environment variables/inputs description for example)** :point_down:
