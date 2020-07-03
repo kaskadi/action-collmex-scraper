@@ -32,6 +32,11 @@ jobs:
     - uses: actions/checkout@v2
     - name: {YOUR-STEP-NAME}
       uses: kaskadi/action-collmex-scrapper@master
+      env:
+        USER_NR: ${{ secrets.{YOUR-COLLMEX-USER-NR} }}
+        USER_ID: ${{ secrets.{YOUR-COLLMEX-USER-ID} }}
+        USER_PWD: ${{ secrets.{YOUR-COLLMEX-USER-PWD} }}
+        SATZARTEN_PATH: ${{ secrets.{PATH-TO-YOUR-SATZARTEN-JSON-FILE} }}
 ```
 
 :point_down: **Here goes any extra details on how to use the action (environment variables/inputs description for example)** :point_down:
