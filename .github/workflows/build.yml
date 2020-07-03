@@ -28,7 +28,7 @@ jobs:
     - name: Test
       run: npm test
       env:
-        USER_NR: ${{ secrets.{YOUR-COLLMEX-USER-NR} }}
-        USER_ID: ${{ secrets.{YOUR-COLLMEX-USER-ID} }}
-        USER_PWD: ${{ secrets.{YOUR-COLLMEX-USER-PWD} }}
-        SATZARTEN_PATH: ${{ secrets.{PATH-TO-YOUR-SATZARTEN-JSON-FILE} }}
+        USER_NR: ${{ secrets.USER_NR }}
+        USER_ID: ${{ secrets.USER_ID }}
+        USER_PWD: ${{ secrets.USER_PWD }}
+        SATZARTEN_PATH: ${{ secrets.SATZARTEN_PATH }}
