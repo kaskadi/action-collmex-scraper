@@ -1,5 +1,5 @@
-module.exports = (page, customerNr) => {
-  return page.evaluate(getSid).then(sid => page.goto(`https://www.collmex.de/c.cmx?${customerNr},${sid},help,api`, { waitUntil: 'networkidle2' }))
+module.exports = (page, userNr) => {
+  return page.evaluate(getSid).then(sid => page.goto(`https://www.collmex.de/c.cmx?${userNr},${sid},help,api`, { waitUntil: 'networkidle2' }))
 }
 
 function getSid () {

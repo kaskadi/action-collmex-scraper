@@ -1,5 +1,5 @@
-module.exports = async (page, customerNr, userId, userPwd) => {
-  await page.goto(`https://www.collmex.de/c.cmx?${customerNr},0,login`, { waitUntil: 'networkidle2' })
+module.exports = async (page, userNr, userId, userPwd) => {
+  await page.goto(`https://www.collmex.de/c.cmx?${userNr},0,login`, { waitUntil: 'networkidle2' })
   await Promise.all([
     fillInputField(page, 'group_benutzerId', userId),
     fillInputField(page, 'group_kennwort', userPwd)
