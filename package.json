@@ -1,15 +1,15 @@
 {
-  "name": "action-collmex-scrapper",
+  "name": "action-collmex-scraper",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "standard --fix && mocha test/*.test.js --require test/mocha-color-setter.js",
+    "test": "standard --fix && mocha -b test/*.test.js --require test/mocha-color-setter.js",
     "coverage": "nyc npm run test"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kaskadi/action-collmex-scrapper.git"
+    "url": "git+https://github.com/kaskadi/action-collmex-scraper.git"
   },
   "keywords": [],
   "author": "Klimapartner GmbH <kontakt@klimapartner.de> (https://klimapartner.de)",
@@ -19,11 +19,12 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kaskadi/action-collmex-scrapper/issues"
+    "url": "https://github.com/kaskadi/action-collmex-scraper/issues"
   },
-  "homepage": "https://github.com/kaskadi/action-collmex-scrapper#readme",
+  "homepage": "https://github.com/kaskadi/action-collmex-scraper#readme",
   "devDependencies": {
     "chai": "^4.2.0",
+    "dotenv": "^8.2.0",
     "mocha": "^8.0.1",
     "nyc": "^15.1.0",
     "standard": "^14.3.3"
@@ -36,5 +37,8 @@
     ],
     "report-dir": "./coverage"
   },
-  "dependencies": {}
+  "dependencies": {
+    "fast-deep-equal": "^3.1.3",
+    "puppeteer": "^4.0.1"
+  }
 }

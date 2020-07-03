@@ -1,4 +1,4 @@
-name: 'action-collmex-scrapper'
+name: 'action-collmex-scraper'
 description: ''
 runs:
   using: 'node12'

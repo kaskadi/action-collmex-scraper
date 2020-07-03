@@ -1,0 +1,34 @@
+name: build
+on:
+  push:
+    branches:
+      - 'master'
+    paths:
+      - 'index.js'
+      - 'helpers/**'
+      - 'test/**'
+      - 'package.json'
+  pull_request:
+    branches:
+      - 'master'
+      - 'dev'
+    types: [opened, reopened, edited, synchronize]
+    paths:
+      - 'index.js'
+      - 'helpers/**'
+      - 'test/**'
+      - 'package.json'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install dependencies
+      run: npm i
+    - name: Test
+      run: npm test
+      env:
+        USER_NR: ${{ secrets.{YOUR-COLLMEX-USER-NR} }}
+        USER_ID: ${{ secrets.{YOUR-COLLMEX-USER-ID} }}
+        USER_PWD: ${{ secrets.{YOUR-COLLMEX-USER-PWD} }}
+        SATZARTEN_PATH: ${{ secrets.{PATH-TO-YOUR-SATZARTEN-JSON-FILE} }}
