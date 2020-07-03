@@ -8,7 +8,7 @@ async function main () {
     process.exit()
   })
   const satzarten = await scraper(page, browser).catch(console.log).finally(async () => { await browser.close() })
-  await updateRepo(satzarten).catch(console.log)
+  updateRepo(satzarten)
 }
 
 main()
