@@ -8,14 +8,12 @@ function scrapeEndpointData (browser) {
   return async href => {
     const page = await browser.newPage()
     await page.goto(href, { waitUntil: 'networkidle2' })
-    console.log(href)
     let data = await page.evaluate(getData)
     visitedPages = [...visitedPages, href]
     const crawlingHrefs = await getCrawlingHrefs(page, getUrlPattern(href))
     await page.close()
     const crawlingData = await Promise.all(crawlingHrefs.map(scrapeEndpointData(browser)))
     data = [...data, ...crawlingData.flat(1)]
-    console.log(data)
     return data
   }
 }
