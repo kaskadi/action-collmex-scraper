@@ -1,6 +1,6 @@
 const startPupeteer = require('./helpers/start-pupeteer.js')
 const scraper = require('./helpers/scraper/scraper.js')
-const updateRepo = require('./helpers/update-repo.js')
+const updateRepo = require('./helpers/update-repo/update-repo.js')
 
 async function main () {
   const { browser, page } = await startPupeteer().catch(err => {
