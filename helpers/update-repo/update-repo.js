@@ -12,9 +12,9 @@ module.exports = (satzarten) => {
     const currentData = fs.existsSync(filePath) ? fs.readFileSync(filePath, 'utf-8').trim() : ''
     if (currentData.length === 0 || !deepEqual(satzarten, JSON.parse(currentData))) {
       console.log('INFO: updating data file...')
-      updateFiles(filePath, currentData, data)
+      const backupPath = updateFiles(filePath, currentData, data)
       console.log('INFO: pushing changes to repo...')
-      pushChanges(root)
+      pushChanges(root, backupPath)
     } else {
       console.log('INFO: data identical to current one, not proceeding to update data file...')
     }
@@ -22,13 +22,16 @@ module.exports = (satzarten) => {
 }
 
 function updateFiles (filePath, currentData, newData) {
+  let backupPath = ''
   if (currentData.length > 0) {
-    const backupPath = `${filePath.slice(0, -5)}.backup${filePath.slice(-5)}`
+    backupPath = `${filePath.slice(0, -5)}.backup${filePath.slice(-5)}`
     fs.writeFileSync(backupPath, currentData, 'utf-8')
   }
   fs.writeFileSync(filePath, newData, 'utf-8')
+  return backupPath
 }
 
-function pushChanges (root) {
-  console.log(root)
+function pushChanges (root, backupPath) {
+  const spawnSync = require('child_process').spawnSync
+  spawnSync('bash', [`${root}helpers/update-repo/push-changes.sh`, backupPath], { stdio: 'inherit' })
 }
