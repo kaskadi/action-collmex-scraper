@@ -1,28 +1,23 @@
 let visitedPages = [] // track visited pages to protect ourselves from cross reference in docs
 
-module.exports = async (hrefs, page) => {
-  let data = []
-  for (const href of hrefs) {
-    data = [...data, ...await scrapeEndpointData(href, page)]
-  }
-  return data
-  // return Promise.all(hrefs.map(scrapeEndpointData(page)))
+module.exports = async (hrefs, browser) => {
+  return Promise.all(hrefs.map(scrapeEndpointData(browser)))
 }
 
-async function scrapeEndpointData (href, page) {
-  // const page = await browser.newPage()
-  await page.goto(href, { waitUntil: 'networkidle2' })
-  console.log(href)
-  let data = await page.evaluate(getData)
-  visitedPages = [...visitedPages, href]
-  const crawlingHrefs = await getCrawlingHrefs(page, getUrlPattern(href))
-  // await page.close()
-  for (const crawlingHref of crawlingHrefs) {
-    data = [...data, ...await scrapeEndpointData(crawlingHref, page)]
+function scrapeEndpointData (browser) {
+  return async href => {
+    const page = await browser.newPage()
+    await page.goto(href, { waitUntil: 'networkidle2' })
+    console.log(href)
+    let data = await page.evaluate(getData)
+    visitedPages = [...visitedPages, href]
+    const crawlingHrefs = await getCrawlingHrefs(page, getUrlPattern(href))
+    await page.close()
+    const crawlingData = await Promise.all(crawlingHrefs.map(scrapeEndpointData(browser)))
+    data = [...data, ...crawlingData.flat(1)]
+    console.log(data)
+    return data
   }
-  // const crawlingData = await Promise.all(crawlingHrefs.map(scrapeEndpointData(page)))
-  console.log(data)
-  return data
 }
 
 function getData () {
