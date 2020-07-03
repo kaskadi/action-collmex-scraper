@@ -6,9 +6,6 @@ async function scraper (page, browser) {
   const customerNr = process.env.CUSTOMER_NR
   await login(page, customerNr, process.env.USER_ID, process.env.USER_PWD)
   await gotoDocs(page, customerNr)
-  await page.screenshot({
-    path: './screenshots/page.png'
-  })
   const endpointsHrefs = await getEndpointHrefs(page)
   console.log(endpointsHrefs.length)
   await page.close()
