@@ -7,7 +7,7 @@ module.exports = (satzarten) => {
   processData(satzarten, root, process.env.SATZARTEN_PATH, isTest)
 }
 
-function processData (satzarten, root, filePath, isTest = false) {
+function processData (satzarten, root, filePath, isTest) {
   const currentData = fs.existsSync(filePath) ? fs.readFileSync(filePath, 'utf-8').trim() : ''
   if (currentData.length === 0 || !deepEqual(satzarten, JSON.parse(currentData))) {
     const backupPath = updateFiles(filePath, currentData, JSON.stringify(satzarten, null, 2))
