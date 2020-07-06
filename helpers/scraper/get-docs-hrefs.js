@@ -1,8 +1,5 @@
 module.exports = (page) => {
   return page.evaluate(extractDocsHrefs)
-  // return page.$$eval('#dv-hilfe p', ps => ps.map(p => p.textContent.trim()))
-  //   .then(ps => ps.filter(p => p !== 'Szenarien'))
-  //   .then(matchingIndex => page.$$eval(`#dv-hilfe p:nth-of-type(${matchingIndex + 1}) + ul a`, as => as.map(a => a.href)))
 }
 
 function extractDocsHrefs () {
