@@ -3,6 +3,7 @@ const scraper = require('./helpers/scraper/scraper.js')
 const updateRepo = require('./helpers/update-repo/update-repo.js')
 
 async function main () {
+  require('./helpers/install-dependencies.js')()
   const { browser, page } = await startPupeteer()
     .catch(err => {
       console.log(err)
