@@ -1,5 +1,3 @@
-const { spawn } = require('child_process')
-
 module.exports = () => {
   if (!process.env.GITHUB_ACTIONS || process.env.GITHUB_REPOSITORY === 'kaskadi/action-collmex-scraper') {
     return
@@ -8,6 +6,8 @@ module.exports = () => {
   const callingRepo = process.cwd()
   const actionRepo = '/home/runner/work/_actions/kaskadi/action-collmex-scraper/master/'
   process.chdir(actionRepo)
+  console.log('INFO: installing action dependencies...')
   spawnSync('npm', ['i', '--only=prod'])
+  console.log('SUCCESS: dependencies installed!')
   process.chdir(callingRepo)
 }
