@@ -1,7 +1,7 @@
 const login = require('./login.js')
 const gotoDocs = require('./goto-docs.js')
-const getEndpointHrefs = require('./get-endpoint-hrefs.js')
-const scrapeEndpointsData = require('./scrape-endpoints-data.js')
+const getDocsHrefs = require('./get-docs-hrefs.js')
+const scrapeHrefsData = require('./scrape-hrefs-data.js')
 const userNr = process.env.USER_NR
 
 module.exports = async (page, browser) => {
@@ -10,10 +10,10 @@ module.exports = async (page, browser) => {
   console.log('INFO: navigating to API documentation page...')
   await gotoDocs(page, userNr)
   console.log('INFO: retrieving endpoints...')
-  const endpointsHrefs = await getEndpointHrefs(page)
+  const docsHrefs = await getDocsHrefs(page)
   await page.close()
   console.log('INFO: extracting endpoints data...')
-  const data = await scrapeEndpointsData(endpointsHrefs, browser)
+  const data = await scrapeHrefsData(docsHrefs, browser)
     .then(data => data.flat(1))
   return Object.fromEntries(data.map(data => [data.Satzart, data]))
 }
