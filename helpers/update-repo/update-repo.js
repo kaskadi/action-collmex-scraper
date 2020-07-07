@@ -2,7 +2,7 @@ const fs = require('fs')
 const deepEqual = require('fast-deep-equal')
 
 module.exports = (satzarten) => {
-  const root = process.env.GITHUB_ACTIONS ? '/home/runner/work/_actions/kaskadi/action-collmex-scraper/master/' : `${process.cwd()}/`
+  const root = process.env.GITHUB_ACTIONS ? __dirname : process.cwd()
   const isTest = !process.env.GITHUB_ACTIONS || process.env.GITHUB_REPOSITORY === 'kaskadi/action-collmex-scraper'
   processData(satzarten, root, process.env.SATZARTEN_PATH, isTest)
 }
@@ -33,7 +33,7 @@ function pushChanges (root, backupPath, isTest) {
   if (!isTest) {
     const spawnSync = require('child_process').spawnSync
     console.log('INFO: pushing changes to repo...')
-    spawnSync('bash', [`${root}helpers/update-repo/push-changes.sh`, backupPath], { stdio: 'inherit' })
+    spawnSync('bash', [`${root}/helpers/update-repo/push-changes.sh`, backupPath], { stdio: 'inherit' })
   } else {
     console.log('INFO: currently in test environment, not proceeding to push changes to calling repo...')
   }
