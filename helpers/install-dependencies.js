@@ -5,6 +5,7 @@ module.exports = () => {
   const { spawnSync } = require('child_process')
   const callingRepo = process.cwd()
   process.chdir(__dirname)
+  process.chdir('..')
   console.log('INFO: installing action dependencies...')
   spawnSync('npm', ['i', '--only=prod'], { stdio: 'inherit' })
   console.log('SUCCESS: dependencies installed!')
