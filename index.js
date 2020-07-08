@@ -9,7 +9,10 @@ async function main () {
       process.exit()
     })
   const satzarten = await scraper(page, browser)
-    .catch(console.log)
+    .catch(err => {
+      console.log(err)
+      process.exit()
+    })
     .finally(async () => {
       await browser.close()
     })

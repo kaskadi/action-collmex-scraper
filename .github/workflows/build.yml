@@ -20,7 +20,7 @@ jobs:
     - name: Test
       run: npm test
       env:
-        USER_NR: ${{ secrets.USER_NR }}
-        USER_ID: ${{ secrets.USER_ID }}
-        USER_PWD: ${{ secrets.USER_PWD }}
+        CMX_USER: ${{ secrets.CMX_USER }}
+        CMX_PWD: ${{ secrets.CMX_PWD }}
+        CMX_CUST_ID: ${{ secrets.CMX_CUST_ID }}
         SATZARTEN_PATH: ${{ secrets.SATZARTEN_PATH }}

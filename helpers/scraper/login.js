@@ -1,8 +1,8 @@
-module.exports = async (page, userNr, userId, userPwd) => {
-  await page.goto(`https://www.collmex.de/c.cmx?${userNr},0,login`, { waitUntil: 'networkidle2' })
+module.exports = async (page, custId, user, pwd) => {
+  await page.goto(`https://www.collmex.de/c.cmx?${custId},0,login`, { waitUntil: 'networkidle2' })
   await Promise.all([
-    fillInputField(page, 'group_benutzerId', userId),
-    fillInputField(page, 'group_kennwort', userPwd)
+    fillInputField(page, 'group_benutzerId', user),
+    fillInputField(page, 'group_kennwort', pwd)
   ])
   return Promise.all([
     page.click('input[type="submit"]'),

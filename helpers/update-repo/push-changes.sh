@@ -1,8 +1,8 @@
 #!/bin/bash
 BACKUP_PATH="$1"
 echo "INFO: setting up GitHub user..."
-git config --global user.name $USER_NAME
-git config --global user.email $USER_EMAIL
+git config --global user.name $GH_USER_NAME
+git config --global user.email $GH_USER_EMAIL
 echo "INFO: staging data file..."
 git add $SATZARTEN_PATH
 if [ $BACKUP_PATH ]
