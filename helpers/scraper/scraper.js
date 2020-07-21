@@ -2,6 +2,7 @@ const login = require('./login.js')
 const gotoDocs = require('./goto-docs.js')
 const getDocsHrefs = require('./get-docs-hrefs.js')
 const scrapeHrefsData = require('./scrape-hrefs-data.js')
+const processData = require('./process-data.js')
 const custId = process.env.CMX_CUST_ID
 
 module.exports = async (page, browser) => {
@@ -13,7 +14,5 @@ module.exports = async (page, browser) => {
   const docsHrefs = await getDocsHrefs(page)
   await page.close()
   console.log('INFO: extracting endpoints data...')
-  const data = await scrapeHrefsData(docsHrefs, browser)
-    .then(data => data.flat(1))
-  return Object.fromEntries(data.map(data => [data.Satzart, data]))
+  return await scrapeHrefsData(docsHrefs, browser).then(processData)
 }
