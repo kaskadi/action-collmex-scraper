@@ -11,7 +11,7 @@ if [ $BACKUP_PATH ]
     git add $BACKUP_PATH
 fi
 echo "INFO: updating package version"
-npm --no-git-tag-version version patch
+npm --no-git-tag-version version minor
 git add package.json
 git add package-lock.json
 echo "INFO: commiting..."
