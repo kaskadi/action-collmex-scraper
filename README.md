@@ -40,3 +40,5 @@ jobs:
 **If there is already some data at this path:** the action will automatically back them up by appending `.backup` to the file name and duplicating it before updating it.
 
 **Note:** everything contained in single curly brackets (`{ }`) needs to be replaced by your desired values
+
+**Outputs:** `dataChanged` output is available for reusing into your workflow. This tracks if the CSV mapping data changed.

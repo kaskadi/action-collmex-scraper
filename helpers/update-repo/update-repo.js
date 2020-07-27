@@ -1,5 +1,6 @@
 const fs = require('fs')
 const deepEqual = require('fast-deep-equal')
+const core = require('@actions/core')
 
 module.exports = (satzarten) => {
   const isTest = !process.env.GITHUB_ACTIONS || process.env.GITHUB_REPOSITORY === 'kaskadi/action-collmex-scraper'
@@ -11,7 +12,9 @@ function processData (satzarten, filePath, isTest) {
   if (currentData.length === 0 || !deepEqual(satzarten, JSON.parse(currentData))) {
     const backupPath = updateFiles(filePath, currentData, JSON.stringify(satzarten, null, 2))
     pushChanges(backupPath, isTest)
+    updateOutput(true, isTest)
   } else {
+    updateOutput(false, isTest)
     console.log('INFO: data identical to current one, not proceeding to update data file...')
   }
 }
@@ -35,5 +38,11 @@ function pushChanges (backupPath, isTest) {
     spawnSync('bash', [`${__dirname}/push-changes.sh`, backupPath], { stdio: 'inherit' })
   } else {
     console.log('INFO: currently in test environment, not proceeding to push changes to calling repo...')
+  }
+}
+
+function updateOutput (value, isTest) {
+  if (!isTest) {
+    core.setOutput('dataChanged', value)
   }
 }

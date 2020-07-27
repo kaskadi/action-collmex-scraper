@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/kaskadi/action-collmex-scraper#readme",
   "dependencies": {
+    "@actions/core": "^1.2.4",
     "fast-deep-equal": "^3.1.3",
     "puppeteer": "^5.2.0"
   },
