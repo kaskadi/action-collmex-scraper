@@ -1,7 +1,7 @@
 name: 'action-collmex-scraper'
 description: 'An action to scrape Collmex API documentation and update your CSV field mapping data'
 outputs:
-  dataChanged:
+  DATA_CHANGED:
     description: 'Track if data has changed'
 runs:
   using: 'node12'

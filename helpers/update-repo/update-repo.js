@@ -43,6 +43,6 @@ function pushChanges (backupPath, isTest) {
 
 function updateOutput (value, isTest) {
   if (!isTest) {
-    core.setOutput('dataChanged', value)
+    core.setOutput('DATA_CHANGED', value)
   }
 }

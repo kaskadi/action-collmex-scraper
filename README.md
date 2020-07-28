@@ -41,4 +41,4 @@ jobs:
 
 **Note:** everything contained in single curly brackets (`{ }`) needs to be replaced by your desired values
 
-**Outputs:** `dataChanged` output is available for reusing into your workflow. This tracks if the CSV mapping data changed.
+**Outputs:** `DATA_CHANGED` output is available for reusing into your workflow. This tracks if the CSV mapping data changed. It is defined as boolean in the action but you may need to check it against its `String` version if you are working with conditionals.
