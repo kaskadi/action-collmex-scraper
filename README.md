@@ -6,8 +6,6 @@
 
 ****
 
-**This action is updating its dependencies every Sunday at 7AM CET**
-
 # What is this action for?
 
 This action scrape the CSV mapping from Collmex documentation. This mapping is for example used in [`collmex-client`](https://github.com/kaskadi/collmex-client) to parse the response from Collmex API.
