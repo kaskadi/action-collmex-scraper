@@ -1,4 +1,3 @@
-[![Dependency update status](https://img.shields.io/github/workflow/status/kaskadi/action-collmex-scraper/update?label=dependencies%20updated&logo=npm)](https://github.com/kaskadi/action-collmex-scraper/actions?query=workflow%3Aupdate)
 [![Build status](https://img.shields.io/github/workflow/status/kaskadi/action-collmex-scraper/build?label=build&logo=mocha)](https://github.com/kaskadi/action-collmex-scraper/actions?query=workflow%3Abuild)
 
 [![](https://img.shields.io/codeclimate/maintainability/kaskadi/action-collmex-scraper?label=maintainability&logo=Code%20Climate)](https://codeclimate.com/github/kaskadi/action-collmex-scraper)
