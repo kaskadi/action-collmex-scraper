@@ -1,8 +1,8 @@
 {
   "name": "action-collmex-scraper",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "An action to scrape Collmex API documentation and update your CSV field mapping data",
+  "main": "action.yml",
   "scripts": {
     "test": "mocha -b test/*.test.js --require test/mocha-color-setter.js",
     "lint": "standard --fix"
