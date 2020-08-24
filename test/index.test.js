@@ -92,6 +92,7 @@ function cleanData (dirPath) {
 function runAction () {
   try {
     console.log('INFO: running action...')
+    spawnSync('node', ['src/pre'], { stdio: 'inherit' })
     spawnSync('node', ['src/main'], { stdio: 'inherit' })
   } catch (err) {
     console.log('ERROR: an error occured...')
