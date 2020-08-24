@@ -99,7 +99,7 @@ function runAction () {
 function execMain () {
   const childProc = require('child_process')
   return new Promise((resolve, reject) => {
-    childProc.exec('node index', (err, stdout, stderr) => {
+    childProc.exec('node src/main', (err, stdout, stderr) => {
       if (err === null) {
         console.log(stdout)
         resolve(true)
