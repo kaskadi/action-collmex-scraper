@@ -1,6 +1,7 @@
 /* eslint-env mocha */
 const assert = require('chai').assert
 const fs = require('fs')
+const { spawnSync } = require('child_process')
 const deepEqual = require('fast-deep-equal')
 if (!process.env.GITHUB_ACTIONS) {
   const path2Env = `${process.cwd()}/test/.env`
@@ -17,7 +18,7 @@ describe('action-collmex-scraper', function () {
   describe('at first run', function () {
     before(async function () {
       this.timeout(30000)
-      await runAction()
+      runAction()
     })
     it('should fetch data from Collmex docs', function () {
       assert.equal(fs.existsSync(filePath), true)
@@ -37,7 +38,7 @@ describe('action-collmex-scraper', function () {
     before(async function () {
       oldData = require(filePath)
       this.timeout(30000)
-      await runAction()
+      runAction()
     })
     it('should not update data', function () {
       const newData = require(filePath)
@@ -52,7 +53,7 @@ describe('action-collmex-scraper', function () {
       }
       fs.writeFileSync(filePath, JSON.stringify(oldData, null, 2), 'utf-8')
       this.timeout(30000)
-      await runAction()
+      runAction()
     })
     it('should create a backup file', function () {
       const backupPath = `${filePath.slice(0, -5)}.backup${filePath.slice(-5)}`
@@ -89,24 +90,12 @@ function cleanData (dirPath) {
 }
 
 function runAction () {
-  console.log('INFO: running action...')
-  return execMain().catch(err => {
+  try {
+    console.log('INFO: running action...')
+    spawnSync('node', ['src/main'], { stdio: 'inherit' })
+  } catch (err) {
+    console.log('ERROR: an error occured...')
     console.log(err)
     process.exit()
-  })
-}
-
-function execMain () {
-  const childProc = require('child_process')
-  return new Promise((resolve, reject) => {
-    childProc.exec('node src/main', (err, stdout, stderr) => {
-      if (err === null) {
-        console.log(stdout)
-        resolve(true)
-      } else {
-        console.log(stderr)
-        reject(err)
-      }
-    })
-  })
+  }
 }
