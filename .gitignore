@@ -2,3 +2,4 @@ node_modules
 test/data
 test/.env
 .nyc_output
+coverage
