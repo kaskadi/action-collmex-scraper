@@ -1,8 +1,5 @@
-module.exports = () => {
-  if (!process.env.GITHUB_ACTIONS || process.env.GITHUB_REPOSITORY === 'kaskadi/action-collmex-scraper') {
-    return
-  }
-  const { spawnSync } = require('child_process')
+const { spawnSync } = require('child_process')
+if (process.env.GITHUB_ACTIONS && process.env.GITHUB_REPOSITORY !== 'kaskadi/action-collmex-scraper') {
   const callingRepo = process.cwd()
   process.chdir(__dirname)
   process.chdir('..')
