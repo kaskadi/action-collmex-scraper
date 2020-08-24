@@ -20,7 +20,7 @@ describe('action-collmex-scraper', function () {
   describe('at first run', function () {
     before(async function () {
       this.timeout(30000)
-      await runAction(steps).catch(process.exit)
+      await runAction(steps)
     })
     it('should fetch data from Collmex docs', function () {
       assert.equal(fs.existsSync(filePath), true)
@@ -40,7 +40,7 @@ describe('action-collmex-scraper', function () {
     before(async function () {
       oldData = require(filePath)
       this.timeout(30000)
-      await runAction(steps).catch(process.exit)
+      await runAction(steps)
     })
     it('should not update data', function () {
       const newData = require(filePath)
@@ -55,7 +55,7 @@ describe('action-collmex-scraper', function () {
       }
       fs.writeFileSync(filePath, JSON.stringify(oldData, null, 2), 'utf-8')
       this.timeout(30000)
-      await runAction(steps).catch(process.exit)
+      await runAction(steps)
     })
     it('should create a backup file', function () {
       const backupPath = `${filePath.slice(0, -5)}.backup${filePath.slice(-5)}`
