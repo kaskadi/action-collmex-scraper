@@ -5,4 +5,6 @@ outputs:
     description: 'Track if data has changed'
 runs:
   using: 'node12'
-  main: 'index.js'
+  pre: 'src/pre.js'
+  main: 'src/main.js'
+  post: 'src/post.js'
