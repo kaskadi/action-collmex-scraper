@@ -17,6 +17,9 @@ describe('action-collmex-scraper', function () {
   const filePath = `${process.cwd()}/${process.env.SATZARTEN_PATH}`
   let oldData = {}
   before(initData(filePath))
+  // ******* DO NOT REMOVE THIS TEST!
+  require('./pre/tests.js')
+  // *******
   describe('at first run', function () {
     before(async function () {
       this.timeout(30000)
