@@ -13,7 +13,7 @@
 
 {{>main}}
 **In order to sign the commit made by this action when generating the new CSV mapping**: add the following `step` before the one using `action-collmex-scraper`:
-```
+```yaml
     - name: Import GPG key
       uses: crazy-max/ghaction-import-gpg@v2
       with:
@@ -25,7 +25,7 @@
 ```
 
 **If you do not need to sign via GPG**: simply replace the `Import GPG key` step of the job by:
-```
+```yaml
     - name: Configure GitHub user
       run: |
         git config --global user.name $GH_USER_NAME
