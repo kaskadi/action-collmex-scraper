@@ -12,3 +12,25 @@
 ****
 
 {{>main}}
+**In order to sign the commit made by this action when generating the new CSV mapping**: add the following `step` before the one using `action-collmex-scraper`:
+```
+    - name: Import GPG key
+      uses: crazy-max/ghaction-import-gpg@v2
+      with:
+        git_user_signingkey: true
+        git_commit_gpgsign: true
+      env:
+        GPG_PRIVATE_KEY: ${{ secrets.{YOUR-GPG-PRIVATE-KEY} }}
+        PASSPHRASE: ${{ secrets.{YOUR-GPG-PRIVATE-KEY-PASSPHRASE} }}
+```
+
+**If you do not need to sign via GPG**: simply replace the `Import GPG key` step of the job by:
+```
+    - name: Configure GitHub user
+      run: |
+        git config --global user.name $GH_USER_NAME
+        git config --global user.email $GH_USER_EMAIL
+      env:
+        GH_USER_NAME: ${{ secrets.{YOUR-GITHUB-USER-NAME} }}
+        GH_USER_EMAIL: ${{ secrets.{YOUR-GITHUB-USER-EMAIL} }}
+```
