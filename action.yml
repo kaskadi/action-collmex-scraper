@@ -3,7 +3,6 @@ description: 'This action scrape the CSV mapping from Collmex documentation. Thi
 outputs:
   DATA_CHANGED:
     description: 'Tracks if the CSV mapping data has changed. Defined as `Boolean` but you may need to check it against its  `String` version if you are working with conditionals.'
-    required: false
 env:
   CMX_USER:
     description: 'Collmex user name to use for authentication. **Recommend storing this in your repository secrets!**'
