@@ -1,6 +1,6 @@
 {
   "name": "action-collmex-scraper",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An action to scrape Collmex API documentation and update your CSV field mapping data",
   "main": "action.yml",
   "scripts": {
